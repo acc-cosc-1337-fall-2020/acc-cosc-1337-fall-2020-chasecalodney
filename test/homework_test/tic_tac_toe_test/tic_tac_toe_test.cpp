@@ -5,17 +5,28 @@ TEST_CASE("Verify Test Configuration", "verification") {
 	REQUIRE(true == true);
 }
 
-TEST_CAST("test")
+TEST_CASE("test")
 {
-	REQUIRE(test_config() == true);
-	REQUIRE(game.mark_board(1) == "X";)
-	REQUIRE(game.mark_board(2) == "O";)
-	REQUIRE(game.mark_board(3) == "X";)
-	REQUIRE(game.mark_board(4) == "O";)
-	REQUIRE(game.mark_board(5) == "X";)
-	REQUIRE(game.mark_board(6) == "O";)
-	REQUIRE(game.mark_board(7) == "X";)
-	REQUIRE(game.mark_board(8) == "O";)
-	REQUIRE(game.mark_board(9) == "X";)
+	TicTacToe game;
+	
+	game.mark_board(1);
+	REQUIRE(game.game_over() == false);
+	game.mark_board(2);
+	REQUIRE(game.game_over() == false);
+	game.mark_board(3);
+	REQUIRE(game.game_over() == false);
+	game.mark_board(4);
+	REQUIRE(game.game_over() == false);
+	game.mark_board(5);
+	REQUIRE(game.game_over() == false);
+	game.mark_board(6);
+	REQUIRE(game.game_over() == false);
+	game.mark_board(7);
+	REQUIRE(game.game_over() == false);
+	game.mark_board(8);
+	REQUIRE(game.game_over() == false);
+	game.mark_board(9);
+	REQUIRE(game.game_over() == true);
+
 }
 

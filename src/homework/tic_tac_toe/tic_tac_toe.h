@@ -14,12 +14,12 @@ class TicTacToe
         void mark_board(int position);
         std::string get_player() const;
         void display_board() const;
+    private:
         void set_next_player();
         bool check_board_full() const;
         void clear_board();
-    private:
     
-        std::vector<std::string> pegs; 
+        std::vector<std::string> pegs{9, " "}; 
         std::string player;
 	
 };

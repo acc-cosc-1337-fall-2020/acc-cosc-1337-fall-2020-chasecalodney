@@ -16,7 +16,6 @@ int main()
 		cout << "Player " << game.get_player() << ": Choose a location on the board: 1-9:";
 		cin >> position;
 		game.mark_board(position);
-		game.set_next_player();
 	}
 	game.display_board();
 	return 0;
