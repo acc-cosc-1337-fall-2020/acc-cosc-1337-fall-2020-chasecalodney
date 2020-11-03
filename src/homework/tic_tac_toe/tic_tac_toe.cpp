@@ -11,10 +11,7 @@ TicTacToe::TicTacToe(): pegs(9, " "), player() // constructor
 
 }
 bool TicTacToe::game_over(){
-    check_column_win();
-    check_row_win();
-    check_diagonal_win();
-    check_board_full();
+    
     if (check_column_win() == true)
     {
         set_next_player();
@@ -38,6 +35,8 @@ bool TicTacToe::game_over(){
         std::cout << "There's a tie!" << "\n";
         return check_board_full();
     }
+
+    return false;
 }
 void TicTacToe::start_game(std::string first_player){
     if (first_player == "X")
