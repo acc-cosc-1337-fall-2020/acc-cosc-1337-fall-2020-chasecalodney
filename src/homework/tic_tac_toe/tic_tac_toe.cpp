@@ -6,34 +6,31 @@ bool test_config()
     return true;
 }
 
-TicTacToe::TicTacToe(): pegs(9, " "), player() // constructor
+TicTacToe::TicTacToe(int size): pegs(size * size, " "), player() // constructor
 {
 
 }
 bool TicTacToe::game_over(){
     
-    if (check_column_win() == true)
+    if (check_column_win())
     {
-        set_next_player();
-        std::cout << "Theres a column winner! Congrats " << get_player() << "\n";
-        return check_column_win();
+        std::cout << "Theres a column winner! Congrats " << get_winner() << "\n";
+        return true;
     }
-    if (check_row_win() == true)
+    if (check_row_win())
     {
-        set_next_player();
-        std::cout << "Theres a row winner! Congrats " << get_player() <<  "\n";
-        return check_row_win();
+        std::cout << "Theres a row winner! Congrats " << get_winner() <<  "\n";
+        return true;
     }
-    if (check_diagonal_win() == true)
+    if (check_diagonal_win())
     {
-        set_next_player();
-        std::cout << "Theres a diagonal winner! Congrats " << get_player() << "\n";
-        return check_diagonal_win();
+        std::cout << "Theres a diagonal winner! Congrats " << get_winner() << "\n";
+        return true;
     }
-    if (check_board_full() == true)
+    if (check_board_full())
     {
         std::cout << "There's a tie!" << "\n";
-        return check_board_full();
+        return true;
     }
 
     return false;
@@ -48,6 +45,9 @@ void TicTacToe::start_game(std::string first_player){
         player = "O";
     }
 }
+void TicTacToe::set_winner(std::string w){
+    winner = w;
+}
 void TicTacToe::mark_board(int position)
 {
     pegs[position-1] = player;
@@ -56,20 +56,6 @@ void TicTacToe::mark_board(int position)
 std::string TicTacToe::get_player() const
 {
     return player;
-}
-void TicTacToe::display_board() const{
-    for (int i = 0; i < pegs.size(); i++)
-    {
-        if (i == 2 or i == 5 or i == 8){
-            std::cout << "|" << pegs[i] << "|" << "\n";
-
-        }
-        else {
-            std::cout << "|" << pegs[i];
-
-        }
-
-    }
 }
 void TicTacToe::set_next_player(){
 
@@ -87,7 +73,7 @@ void TicTacToe::set_next_player(){
     }
 }
 bool TicTacToe::check_board_full() const{
-    for (int i = 0; i <pegs.size(); i++)
+    for (size_t i = 0; i <pegs.size(); i++)
     {
         if (pegs[i] == " ")
         {
@@ -98,13 +84,13 @@ bool TicTacToe::check_board_full() const{
 }
 void TicTacToe::clear_board(){
 
-    for (int i = 0; i < pegs.size(); i++)
+    for (size_t i = 0; i < pegs.size(); i++)
     {
         pegs[i] = " ";
 
     }
 }
-std::string TicTacToe::get_winner()
+std::string TicTacToe::get_winner() const
 {
     return winner;
 }
